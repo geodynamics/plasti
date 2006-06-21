@@ -6,6 +6,8 @@ CC = gcc
 LIBS2 = -llapack -lblas
 F90FLAGS = -O3
 
+all: plasti_oly meshg_oly
+
 #####
 #####  PLASTI
 #####
@@ -22,7 +24,7 @@ SRC/thermal_oly.o: SRC/thermal_oly.f
 
 ## clean
 clean: 
-	rm -f $(PLAS_OBJS) *.mod $(MESH_OBJS) $(PLAS2DX_OBJS)
+	rm -f $(PLAS_OBJS) *.mod $(MESH_OBJS) $(PLAS2DX_OBJS) plasti_oly meshg_oly
 
 #####
 ##### MESHG

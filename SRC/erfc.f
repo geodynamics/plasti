@@ -1,3 +1,20 @@
+C Copyright (C) 1995-2006 Sean Willett, Chris Fuller
+
+C This program is free software; you can redistribute it and/or modify
+C it under the terms of the GNU General Public License as published by
+C the Free Software Foundation; either version 2 of the License, or (at
+C your option) any later version.
+
+C This program is distributed in the hope that it will be useful, but
+C WITHOUT ANY WARRANTY; without even the implied warranty of
+C MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+C General Public License for more details.
+
+C You should have received a copy of the GNU General Public License
+C along with this program; if not, write to the Free Software
+C Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+C USA
+
       FUNCTION erfc(x)
       REAL erfc,x
 CU    USES gammp,gammq
