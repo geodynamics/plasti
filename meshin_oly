@@ -1,0 +1,290 @@
+#output flag (1=all ouput for plasti, 0=profiles only for flexure)
+  1
+#input flag (1=allow files for dens, x node pos, init thickness, 0=use meshin)
+  0
+#Total num col
+  200
+# num of eulerian rows in mechanical 
+#	num rows in thermal model is set by the x spacing
+   25 
+# lagrangian mesh parameters (scaling factors: >1.0 stretch, <1.0 compress)
+# (extent past pro side, extent past retro side, extent past base, 
+#	node density compred to eulerian mesh)
+  1.00e+00  0.70e+00  1.10e+00  0.95e+00
+#Singularity Point, defined by pos (1) or node (0) (set, pos) CAN ONLY USE NODE DEF SINCE VELOCITY BCS NEED TO KNOW WHERE THE SPOINT IS
+    0  1.00e+02
+#Initial Thickness on pro-side (mech,sub lithos,asthenos) (m)
+  0.25e+04  3.00e+04  9.00e+04
+#Initial Thickness on retro-side (lithos) (m)
+#	mech thick is the thick of pro crust at spoint
+  5.10e+04 
+#Relative dif in height of the uncompensated mech. base
+#	for pro and reto sides.  Set pro value at 0.0 and
+#	retro value at desired difference
+  0.00e+00  2.00e+04
+#Water depth defined by distance above pro model edge and
+#	tolerance for water flexure iterataion
+  0.00e+03  1.00e+03
+# x padding beyond model boundaries for flexure problem.
+#	simulates an infinite plate when loads extend to model 
+#	boundaries (number of nodes, distance)
+#	in the meshg, all ref to node # does NOT include the 
+#	nodes from the padding
+  400  1.00e+06
+#horizontal spacing for nodes
+  # num of linearly spaced segments
+  5
+  # spacing (num nodes, beg, end) (#s do not include the padding)
+   25  0.00e+00  1.70e+05
+   20  1.73e+05  2.20e+05
+  110  2.21e+05  3.50e+05 
+   30  3.52e+05  4.80e+05
+   15  4.85e+05  5.50e+05
+# model extent relative to coastline(coast is at x=0)
+#	this is by mk_init_prof.f when making the mech bndry array 
+#	from the obs. profiles for the olympics
+ -2.50e+05  2.50e+05
+#deviation from initial thickness of the crust
+  # num sets
+ 24 
+  #	pos change defined by node(0) or x-position(1), beg, slope.
+    1  1.20e+05  2.50e-02
+    1  1.40e+05  0.00e+00
+    1  1.40e+05  6.00e-02
+    1  1.65e+05  0.00e+00
+    1  1.65e+05  1.10e-01
+    1  2.00e+05  0.00e+00
+    1  2.00e+05  1.75e-01
+    1  2.20e+05  0.00e+00
+    1  2.20e+05  2.10e-01
+    1  2.40e+05  0.00e+00
+    1  2.40e+05  2.50e-01
+    1  2.60e+05  0.00e+00
+    1  2.60e+05  3.00e-01
+    1  2.75e+05  0.00e+00
+    1  2.75e+05  3.10e-01
+    1  2.85e+05  0.00e+00
+    1  2.85e+05 -0.25e+00
+    1  2.95e+05  0.00e+00
+    1  2.95e+05 -0.20e-00
+    1  3.05e+05  0.00e+00
+    1  3.05e+05 -0.14e-00
+    1  3.15e+05  0.00e+00
+    1  3.15e+05 -0.05e-00
+    1  3.30e+05  0.00e+00
+#isostatic compensation:local(0),one plate(1),two plate(2)
+2 
+#initial profile: loaded plates(0), prescribed circular arcs w/ dip (1)
+1
+#for prescribed geometry:
+# dip of sub plate (deg)
+  2.50e+01
+# trench location (node), ie where to begin dip arc
+#	input type (1=x-pos, 0=node #), pos or node
+    1  1.20e+05
+#flexural rigidity for making plate profiles (pro-plate, retro-plate)
+  9.50e+25  1.00e+24
+#flexural rigidity for isostaic calc (pro-plate, retro-plate)
+  2.40e+24  2.40e+24
+#subduction end load (Pa)
+  1.00e+00
+#subduction end moment 
+  0.00e+00
+# shift in cooupling point (m)(neg. -> deeper, pos -> higher)  
+  0.00e+03
+#length of pro-plate past s-point for sub load (m)
+# NOTE: Currently you must have a non-zero extension. w/o any extension
+#	there is no way to get the slope of the descending plate. this could be
+#	changed so that in the event of no extension, a subduction angle could
+#	be prescribed
+  1.90e+05
+#Plasti extension flag
+#	since the extension is not used to update the position of the slab
+#	past s in plasti, this option(=1) will chop the pro-plate at the 
+#	s-point when it is output for plasti
+1
+#tolerance for position of plates in coupling at s-point  
+  5.0 
+#Velocities for Pro-Lith, underplating normal vel (m/my)
+  5.00e+04  0.00e+00
+#unplate flag (2=x position, 0=node loaction)
+#	flag,  node location, x position
+ 2  80  2.00e+05
+#Variable Material Properties for mech model: Cohesion,int angle frict,density
+#	 min viscosity(vmin),activation energy(Q),pre-exponential(A),power-law expn(n)	
+#	 number of sets listed below 
+2
+#defined for elements, start at bot. 
+#	beg col, end col, beg row, end row, coh, phi, dens, vmin, Q, A, n) 
+   1 199   1  24  1.00e+03  2.40e+01  2.80e+03  0.15e+02  0.65e+05  1.36e-19  3.00e+00
+   1 100   1   5  1.00e+03  0.80e+01  2.80e+03  0.15e+02  0.65e+05  1.36e-19  3.00e+00
+#Number of elem boundary layers for model top and base
+#	boundary layers remain a constant thickness for all time.
+#	Boundary layer thickness can be defined by an even spacing of all 
+#	elements over the pro side thickness (=0), or a thickness defined over 
+#	all of the boundary elements set here (=1)
+#	##NOTE##: if setting variable phi on base, should set these elements as
+#	boundary layers
+#upper boundary layer:# of elements,even spacing(=0) or defined (=1),thickness(m)
+    1    0  0.00e+03
+#lower boundary layer:# of elements,even spacing(=0) or defined (=1),thickness(m)
+    6    0  0.00e+03
+#Variable therm prop. for mech domain.  
+#	These will replace in the mech domain what is defined below for whole model
+#	NOTE: bounds should probbaly match those given above. defined for a 
+#	quad, ie two triangular elements
+# number of sets (always have at least 1,can leave same as domain def)
+1
+#	beg col,end col,beg row,end row,therm cond(x,y),density,spec heat,heat prod
+   1 199   1  24  2.00e+00  2.00e+00  2.80e+03  1.00e+03  1.25e-06
+#Rigid viscosity (vrig)
+  0.40e+11
+#Compressibility (beta)
+  0.10e-14
+#flag to use linear or non-linear eqns (1=linear)
+2
+#Purely Plastic def(1 for plastic)(must have linear visc for plastic)
+0
+#epsinv (initial strain rate invarient)=
+  0.1
+# maximum temperature used in calc. pre. exponential for linear viscous case  
+ 12.73e+02
+#Densities (overlying fluid/sea level, mantle)
+#	NOTE: this mantle density is used in the flexure/isostacy calculation.
+#		even if there are defined density variations in the thermal model (as
+#		can be defined below) this value will be used for the flexure problem.
+  1.03e+03  3.30e+03
+#Num BCs (fixed x,y vel on edges, fixed tan vel on edges, pressure, 
+#		loaded sides,tangent vel)
+    0   50    0    0  200   
+#Num t-steps,output int all, output int lagrangian temp,t-step length (my)
+ 2000  100   50  0.50e-02
+#min iter, max iter, num filtering passes, convergence tolerance
+    3  550    2  1.00e+02
+#erosion parameters (erosl,erosr,peros,rpow)
+  0.00e+00  0.00e+00  0.00e+00  2.00e+00 
+# sedimentation parameters (allow sed (yes=1),allow sed of bounding basins,
+#	L bound of sed, R bound of sed, max fill for bounding basins)
+#	                                                       
+    0    0   20  145  3.00e+01
+# basin tracking parameters (flag for tracking 1=yes, tstep interval for 
+#	marking of basin surfaces, initial length of tracking array, init length 
+#	of index aray)
+    0   50 9000  500
+# maximum slope value: any surface slope greater than this is lowered to
+#	prevent surface nodes from having runaway velocties
+  0.40e+00
+#Thermal runup parameters (num tsteps, tstep length)
+   00  0.25e+00
+#Variable Thermal properties: 
+#	aniso. therm. cond (x,y??), desity, spec. heat, heat prod.
+#	defined for 5 domains:(1)mech,(2)pro-lith,(3)retro-lith
+#							(4)pro-athen,(5)retro-athen
+  2.00e+00  2.00e+00  2.80e+03  1.00e+03  1.00e-06
+  2.00e+00  2.00e+00  2.80e+03  1.00e+03  0.00e+00
+  2.00e+00  2.00e+00  2.80e+03  1.00e+03  0.00e+00
+ 50.00e+00 50.00e+00  2.80e+03  1.00e+03  0.00e+00
+ 50.00e+00 50.00e+00  2.80e+03  1.00e+03  0.00e+00
+#Thermal BCs
+# previously applied over a defined set of nodes. with new mesh, don't know
+# how many nodes there are in thermal code till later, so just define the temp
+# for the surface and model base temp.  NOTE: base temp is only applied in
+# asthenosphere, end of sub. lithos does not have temp or flux bc.  Also,
+# at this point flux bcs have not been implemented
+#(surface temp, base temp)
+  2.73e+02 15.73e+02
+#Cooling Oceanic Lithosphere BC for pro-side
+# NOTE: uses spec heat and conductiv. from lithosphere, ignores heat prod,
+#	should be used with some amount of thermal runup
+#	1=on,0=off; age (my); 
+    0  1.00e+00   
+#Mech BCs
+#	sets
+#	num of bcs, start node, increment, value
+    0
+    0
+    0
+    2
+   25    1    1 50000.
+   25 4976    1 00000.
+    5
+   96    1   25 50000.
+    1 2401   25 37500.
+    1 2426   25 25000.
+    1 2451   25 12500.
+  101 2476   25 00000.00
+    0
+    0
+##
+## Output file flags (1 to output, 0 to not output)
+##
+#number of possible output files
+60
+# coords of nodes (1)
+coord           1
+# velocity of mechanical model at nodes (2)
+vel             1
+# pressure at eulerian elements (3)
+press           0
+# stresses and stuff (4-10)
+stress_xx       1
+stress_yy       1
+stress_xy       1
+stress_zz       1
+stress_secinv   1
+stress_yield    1
+stress_flag     1
+# strain rates (directions and invarients), dilitation (11-16)
+srate_xx        1
+srate_yy        0
+srate_xy        1
+srate_zz        0
+srate_dilt      0
+srate_secinv    1
+# coords of lagrangian mesh (17)
+lmesh           1
+# temp for crust(eulerian elems) (18)
+temp_mech       1
+# viscosity (19-20)
+visc_elem       1
+visc_gp         0
+# erosion at the surface (nodes) (21)
+erosion         0
+# temp at lagrangian nodes (22)
+temp_track      0
+# underplating velocity at base (nodes) (23)
+unvel           0
+# exhumation rate lagrangian (nodes) (24)
+exhum           0
+# valley, mean and ridge surface profiles (nodes) (25)
+sur_prof        0
+# flag (yes/no) for ductile def at lagrangian nodes (26)
+duc_flag        0
+# material props at elements (27-33)
+matp_phi        1
+matp_den        0
+matp_coh        0
+matp_prex       0
+matp_vmin       0
+matp_activ      0
+matp_expon      0
+# amount of material filled into basins with closed basin catch (34)
+basinfill       1
+# amount of material lost with max slope catch (35)
+peakchop        1
+# tracking of basin surfaces (36)
+basin_track     1
+# temp of lagrangian nodes, can be output more often than other output (37)
+l_temp_all      0
+# coords of thermal model (38)
+coordt          1
+# vel of thermal model (reduced resolution) (39)
+velthermal_alt  0
+# vel of thermal model, all (40)
+velthermal      0
+# temp of entire model (41)
+temp            1
+# thermal props (42-44)
+matp_hprod      1
+matp_tcond_y    0
+matp_spec_ht    0
