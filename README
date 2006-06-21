@@ -2,6 +2,12 @@ Plasti is a 2-D ALE (Arbitrary Lagrangian Eulerian) code donated to
 CIG by Sean Willett and Chris Fuller of the University of
 Washington. The code originated at Dalhousie University in Canada.
 
+The code is described in greater detail in the paper
+
+  Fuller, C.W., Willett, S.D. and Brandon, M.T., 2006. Formation of
+  forearc basins and their influence on subduction zone
+  earthquakes. Geology, 34: 65-68.
+
 To compile Plasti, you need a Fortran 90 compiler and lapack and blas
 implementations.  The makefile is set up to compile with gfortran, so
 you may have to modify it if you want to use a different compiler.
