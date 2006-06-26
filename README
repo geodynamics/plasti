@@ -1,6 +1,7 @@
 Plasti is a 2-D ALE (Arbitrary Lagrangian Eulerian) code donated to
 CIG by Sean Willett and Chris Fuller of the University of
-Washington. The code originated at Dalhousie University in Canada.
+Washington. The code was based on work by Philippe Fullsack at
+Dalhousie University in Canada.
 
 The code is described in greater detail in the paper
 
@@ -9,6 +10,41 @@ The code is described in greater detail in the paper
   earthquakes. Geology, 34: 65-68.
 
 To compile Plasti, you need a Fortran 90 compiler and lapack and blas
-implementations.  The makefile is set up to compile with gfortran, so
-you may have to modify it if you want to use a different compiler.
-gfortan gives a number of warnings, but should compile fine.
+implementations.  The code has been tested with gfortran (4.0 and 4.1)
+and g95, and was originally developed with the Absoft compiler.
+
+The makefile is set up to compile with gfortran, so you may have to
+modify it if you want to use a different compiler.  gfortan gives a
+number of warnings about common blocks, but should compile fine.
+
+Included with the code is a sample input file "meshin_oly".  The file
+has extensive comments.  When plasti reads the input file, it expects
+the comment lines interspersed with the input parameters.  So do not
+increase or decrease the number of lines of comments.  Also, the input
+file must be named "meshin_oly".
+
+To get results, first run meshg_oly to create the mesh and then
+plasti_oly to actually run the simulation.  So if you are using
+gfortran, the entire sequence of commands would be
+
+  $ make
+  $ ./meshg_oly
+  $ ./plasti_oly
+
+meshg_oly will create some files in the input/ and profiles/
+directories.  It should complete in a few seconds.  plasti_oly will
+create files in the output/ directory.  It should finish the first
+step in less than a minute, but the entire run will take hours.  The
+code outputs every 100 time steps, and it should take about ten minutes
+to get to step 100.
+
+If, for example, you wish to look at the xx component of the stress as
+a function of the coordinates, coord_1, coord_2, coord_3, etc. has the
+coordinates for that time step, and stress_xx_1 has the stress at
+those coordinates.
+
+Please send all bugs to 
+
+  cig-long@geodynamics.org
+
+Enjoy!
