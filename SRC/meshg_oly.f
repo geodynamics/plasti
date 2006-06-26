@@ -154,9 +154,10 @@ c		for dx plotting
       allocate(mecht_nodes(ncol),plithb_nodes(nplbase),
      *plitht_nodes(npltop),mechb_nodes(ncol),
      *rlithb_nodes(ncol-nsing))
+
 c initialize indicies for the above arrays
 c     top of mech model
-      imtnodes=0
+      imtnode=0
 c     base of pro lith      
       iplbnode=0
 c     top of pro lith
@@ -1001,9 +1002,15 @@ c     	plate 2
 c calculate deflection of semi-infinite plates using 
 c	the end cond forces and subduction load/moment
 c     	plate 1
-      	call deflect2(np1,plam1,fk,xp1,0.0,0.0,amom1,ashear1,yp1)
+
+        adummy1=0.0
+        adummy2=0.0
+
+      	call deflect2(np1,plam1,fk,xp1,adummy1,adummy2,amom1,ashear1,yp1)
+C       	call deflect2(np1,plam1,fk,xp1,0.0,0.0,amom1,ashear1,yp1)
 c     	plate 2
-      	call deflect2(np2,plam2,fk,xp2,0.0,0.0,amom2,ashear2,yp2)
+      	call deflect2(np2,plam2,fk,xp2,adummy1,adummy2,amom2,ashear2,yp2)
+C       	call deflect2(np2,plam2,fk,xp2,0.0,0.0,amom2,ashear2,yp2)
 c calculate the coupling load
       	ido_again=1
       	jcount=0
@@ -1077,9 +1084,14 @@ c     plate 2
 c calculate deflection of semi-infinite plates using 
 c	the end cond forces and subduction load/moment
 c     plate 1
+
+      adummy1=0.0
+      adummy2=0.0
+
       call deflect2(np1,plam1,fk,xp1,sload,smomen,amom1,ashear1,yp1)
 c     plate 2
-      call deflect2(np2,plam2,fk,xp2,0.0,0.0,amom2,ashear2,yp2)
+      call deflect2(np2,plam2,fk,xp2,adummy1,adummy2,amom2,ashear2,yp2)
+C       call deflect2(np2,plam2,fk,xp2,0.0,0.0,amom2,ashear2,yp2)
 c      call profdump(xbase,yp1,yp2,np1,np2,nsing,npad)
 c      stop
 c calculate the coupling load and coupled position of plates
@@ -2821,7 +2833,7 @@ c output base of retro-lith
       print*,' Y pos of coupling point relative to sea level (km)'
      *,(-yp2(1)-yshift-wref)/1000.0
 
-      close(9);close(2);close(3);close(4);close(7);close(8)
+      close(2);close(3);close(4);close(7);close(8);close(9)
       close(10);close(11);close(12)
   113 format(4e16.8)
       end

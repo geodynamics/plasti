@@ -95,14 +95,14 @@ c SOLVE SYSTEM OF EQUATIONS (LAPAK ROUTINES)
       if(info.ne.0) then
 	  	print*,'#####  ERROR IN FACTORIZATION, THERMAL DGBTRF'
 	  	print*,'info from dgbtrf',info
-       	call outputt(nn,ne,rhst,itst,nout,nrow,ncol,ioutpt)
+       	call outputt(nn,ne,itst,nout,nrow,ncol,ioutpt)
 	  	stop
 	  endif
 	  call dgbtrs('N',nn,lbw,lbw,1,a,lda,ipt,rhst,nn,info)
 	  if(info.ne.0) then
 	  	print*,'#####  ERROR IN FACTORIZATION, THERMAL DGBTRS'
 	  	print*,'info from dgbtrs',info
-	  	call outputt(nn,ne,rhst,itst,nout,nrow,ncol,ioutpt)
+	  	call outputt(nn,ne,itst,nout,nrow,ncol,ioutpt)
 	  	stop
 	  endif
 

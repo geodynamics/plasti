@@ -1,10 +1,14 @@
 
 ## compilers
 FORT  = gfortran
-CC = gcc
-## libraries
-LIBS2 = -llapack -lblas
 F90FLAGS = -O3
+
+# g95-specific flags
+#FORT  = g95
+#F90FLAGS = -O3 -fsloppy-char
+
+## libraries
+LIBS = -llapack -lblas
 
 all: plasti_oly meshg_oly
 
@@ -15,7 +19,7 @@ all: plasti_oly meshg_oly
 PLAS_OBJS = SRC/plasti_oly.o SRC/thermal_oly.o
 ## Link all files into main program
 plasti_oly: $(PLAS_OBJS)
-	$(FORT) $(PLAS_OBJS) -o plasti_oly -llapack -lblas
+	$(FORT) $(LINKFLAGS) $(PLAS_OBJS) -o plasti_oly $(LIBS)
 ## compile object files
 SRC/plasti_oly.o: SRC/plasti_oly.f 
 	$(FORT) $(F90FLAGS) -c SRC/plasti_oly.f -o SRC/plasti_oly.o
@@ -33,7 +37,7 @@ clean:
 MESH_OBJS = SRC/meshg_oly.o SRC/erfc.o
 ## Link files into main program
 meshg_oly: $(MESH_OBJS)
-	$(FORT) $(MESH_OBJS) -o meshg_oly
+	$(FORT) $(LINKFLAGS) $(MESH_OBJS) -o meshg_oly
 ## compile object files
 SRC/meshg_oly.o: SRC/meshg_oly.f
 	$(FORT) $(F90FLAGS) -c -o SRC/meshg_oly.o SRC/meshg_oly.f
