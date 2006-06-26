@@ -85,7 +85,7 @@
 #flexural rigidity for making plate profiles (pro-plate, retro-plate)
   9.50e+25  1.00e+24
 #flexural rigidity for isostaic calc (pro-plate, retro-plate)
-  2.40e+24  2.40e+24
+  2.40e+20  2.40e+20
 #subduction end load (Pa)
   1.00e+00
 #subduction end moment 
@@ -113,11 +113,10 @@
 #Variable Material Properties for mech model: Cohesion,int angle frict,density
 #	 min viscosity(vmin),activation energy(Q),pre-exponential(A),power-law expn(n)	
 #	 number of sets listed below 
-2
+1
 #defined for elements, start at bot. 
 #	beg col, end col, beg row, end row, coh, phi, dens, vmin, Q, A, n) 
-   1 199   1  24  1.00e+03  2.40e+01  2.80e+03  0.15e+02  0.65e+05  1.36e-19  3.00e+00
-   1 100   1   5  1.00e+03  0.80e+01  2.80e+03  0.15e+02  0.65e+05  1.36e-19  3.00e+00
+   1 199   1  24  1.00e+03  2.00e+01  2.80e+03  0.15e+02  0.45e+06  2.55e-17  2.20e+00
 #Number of elem boundary layers for model top and base
 #	boundary layers remain a constant thickness for all time.
 #	Boundary layer thickness can be defined by an even spacing of all 
@@ -126,9 +125,9 @@
 #	##NOTE##: if setting variable phi on base, should set these elements as
 #	boundary layers
 #upper boundary layer:# of elements,even spacing(=0) or defined (=1),thickness(m)
-    1    0  0.00e+03
+    2    0  0.00e+03
 #lower boundary layer:# of elements,even spacing(=0) or defined (=1),thickness(m)
-    6    0  0.00e+03
+    2    0  0.00e+03
 #Variable therm prop. for mech domain.  
 #	These will replace in the mech domain what is defined below for whole model
 #	NOTE: bounds should probbaly match those given above. defined for a 
