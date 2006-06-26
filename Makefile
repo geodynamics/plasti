@@ -1,11 +1,17 @@
 
 ## compilers
+
+# gfortran
 FORT  = gfortran
 F90FLAGS = -O3
 
-# g95-specific flags
+# g95
 #FORT  = g95
 #F90FLAGS = -O3 -fsloppy-char
+
+# Absoft (untested)
+#FORT = f90
+#F90FLAGS = -s -O3 -YEXT_NAMES=LCS -YEXT_SFX=_ -Z156 -N113 -N11
 
 ## libraries
 LIBS = -llapack -lblas
